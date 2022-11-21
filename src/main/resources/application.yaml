@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  datasource:
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;MODE=MYSQL
+
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
+
+app:
+  security:
+    jwtSecret: Codingt
+    jwtExpirationInMs: 604800000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
