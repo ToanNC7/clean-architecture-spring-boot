@@ -8,9 +8,8 @@ on:
             - main
         pull_request:
             branches:
-                - main
-                - # Push events to branches matching refs/heads/card-*
-                - 'card-/**'
+                - develop
+                
 jobs:
     build:
         runs-on: windows-latest
