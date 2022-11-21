@@ -1,0 +1,6 @@
+CREATE TABLE cousine(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    UNIQUE (name),
+    PRIMARY KEY (Id)
+);
