@@ -1,4 +1,4 @@
-package vn.codingt.clean.presenter.rest.api.customer;
+package vn.codingt.clean.presenter.rest.api.user;
 
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
@@ -10,21 +10,18 @@ import vn.codingt.clean.presenter.rest.api.entities.SignInRequest;
 import vn.codingt.clean.presenter.rest.api.entities.SignUpRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 @CrossOrigin
 @RestController
-@Api(value = ApiPath.API_CUSTOMER)
-@RequestMapping(value = ApiPath.API_CUSTOMER)
-public interface CustomerResource {
-
-    @GetMapping(value = "/get")
-    ResponseEntity<ApiResponse> get();
+@Api(value = ApiPath.API_USER)
+@RequestMapping(value = ApiPath.API_USER)
+public interface UserResource {
 
     @PostMapping
-    CompletableFuture<ResponseEntity<ApiResponse>> signUp(@RequestBody SignUpRequest request,
-            HttpServletRequest httpServletRequest);
+    CompletableFuture<ResponseEntity<ApiResponse>> signUp(@Valid @RequestBody SignUpRequest request, HttpServletRequest httpServletRequest);
 
     @PostMapping("/auth")
-    CompletableFuture<ResponseEntity<AuthenticationResponse>> signIn(@RequestBody SignInRequest request);
+    CompletableFuture<ResponseEntity<AuthenticationResponse>> signIn(@Valid @RequestBody SignInRequest request);
 }

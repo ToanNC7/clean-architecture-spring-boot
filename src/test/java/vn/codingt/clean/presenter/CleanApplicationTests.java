@@ -35,7 +35,7 @@ class CleanApplicationTests {
 	@Sql(scripts = "classpath:clean-up.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 	public void createCustomer() throws Exception {
 		// When
-		ResponseEntity<String> response = template.postForEntity(createUrl(ApiPath.API_CUSTOMER), createSignRequest(),
+		ResponseEntity<String> response = template.postForEntity(createUrl(ApiPath.API_USER), createSignRequest(),
 				String.class);
 
 		// Then
@@ -46,10 +46,10 @@ class CleanApplicationTests {
 	@Sql(scripts = "classpath:clean-up.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 	public void authenticateCustomer() throws Exception {
 		// given
-		template.postForEntity(createUrl(ApiPath.API_CUSTOMER), createSignRequest(), String.class);
+		template.postForEntity(createUrl(ApiPath.API_USER), createSignRequest(), String.class);
 
 		// When
-		ResponseEntity<String> response = template.postForEntity(createUrl(ApiPath.API_CUSTOMER + "/auth"),
+		ResponseEntity<String> response = template.postForEntity(createUrl(ApiPath.API_USER + "/auth"),
 				createSignRequest(), String.class);
 		// Then
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);

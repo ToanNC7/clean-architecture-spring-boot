@@ -6,12 +6,12 @@ import lombok.Value;
 import vn.codingt.clean.core.domain.Cousine;
 import vn.codingt.clean.core.usecases.UseCase;
 
-public class SearchCousineByNameUseCase
-        extends UseCase<SearchCousineByNameUseCase.InputValue, SearchCousineByNameUseCase.OutputValue> {
+public class SearchCousinesByNameUseCase
+        extends UseCase<SearchCousinesByNameUseCase.InputValue, SearchCousinesByNameUseCase.OutputValue> {
 
     private final CousineRepository repository;
 
-    public SearchCousineByNameUseCase(CousineRepository repository) {
+    public SearchCousinesByNameUseCase(CousineRepository repository) {
         this.repository = repository;
     }
 

@@ -2,15 +2,15 @@ package vn.codingt.clean.core.entities;
 
 import com.github.javafaker.Faker;
 
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.core.domain.Identity;
 
 public final class TestCoreEntityGenerator {
 
     private static final Faker faker = new Faker();
 
-    public static Customer randomCustomer() {
-        return new Customer(
+    public static User randomCustomer() {
+        return new User(
                 randomId(),
                 faker.name().name(),
                 faker.lorem().fixedString(30),

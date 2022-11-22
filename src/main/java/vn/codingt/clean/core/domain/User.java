@@ -12,15 +12,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Customer {
+public class User {
     private Identity id;
     private String name;
     private String password;
     private String address;
     private String email;
 
-    public static Customer newInstance(String name, String password, String address, String email) {
-        return new Customer(
+    public static User newInstance(String name, String password, String address, String email) {
+        return new User(
                 Identity.nothing(),
                 name,
                 password,

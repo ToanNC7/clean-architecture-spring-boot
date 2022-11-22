@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import vn.codingt.clean.data.db.jpa.entities.CustomerData;
+import vn.codingt.clean.data.db.jpa.entities.UserData;
 
 @Getter
 @Setter
@@ -29,7 +29,7 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public static UserPrincipal from(CustomerData customerData) {
+    public static UserPrincipal from(UserData customerData) {
         return new UserPrincipal(customerData.getId(), customerData.getName(), customerData.getEmail(),
                 customerData.getPassword(), customerData.getAddress(),
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));

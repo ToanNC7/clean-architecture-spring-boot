@@ -1,4 +1,4 @@
-package vn.codingt.clean.presenter.rest.api.customer;
+package vn.codingt.clean.presenter.rest.api.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -18,17 +18,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.core.entities.TestCoreEntityGenerator;
-import vn.codingt.clean.core.usecases.customer.CreateCustomerUseCase;
+import vn.codingt.clean.core.usecases.user.CreateAUserUseCase;
 import vn.codingt.clean.core.util.constant.ApiPath;
 import vn.codingt.clean.presenter.rest.api.common.BaseControllerTest;
 import vn.codingt.clean.presenter.rest.api.entities.SignInRequest;
 import vn.codingt.clean.presenter.rest.api.entities.SignUpRequest;
 import vn.codingt.clean.presenter.usecases.UseCaseExecutorImpl;
-import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateCustomerUseCase;
-import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateCustomerUseCaseInputMapper;
-import vn.codingt.clean.presenter.usecases.secutiry.CreateCustomerInputMapper;
+import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateAUserUseCase;
+import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateAUserUseCaseInputMapper;
+import vn.codingt.clean.presenter.usecases.secutiry.CreateAUserInputMapper;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
@@ -37,12 +37,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(value = CustomerController.class)
-public class CustomerControllerTest extends BaseControllerTest {
+@WebMvcTest(value = UserController.class)
+public class UserControllerTest extends BaseControllerTest {
 
     @Configuration
     @ComponentScan(basePackages = {
-            "vn.codingt.clean.presenter.rest.api.customer",
+            "vn.codingt.clean.presenter.rest.api.user",
             "vn.codingt.clean.presenter.rest.api.common"})
     static class Config {
 
@@ -52,13 +52,13 @@ public class CustomerControllerTest extends BaseControllerTest {
     private JacksonTester<SignInRequest> signInJson;
 
     @MockBean
-    private AuthenticateCustomerUseCase authenticateCustomerUseCase;
+    private AuthenticateAUserUseCase authenticateCustomerUseCase;
 
     @MockBean
-    private CreateCustomerUseCase createCustomerUseCase;
+    private CreateAUserUseCase createCustomerUseCase;
 
     @MockBean
-    private CreateCustomerInputMapper createCustomerInputMapper;
+    private CreateAUserInputMapper createCustomerInputMapper;
 
     @SpyBean
     private UseCaseExecutorImpl useCaseExecutor;
@@ -85,12 +85,12 @@ public class CustomerControllerTest extends BaseControllerTest {
         // given
         SignInRequest signInRequest = new SignInRequest("email@email.com", "password");
 
-        AuthenticateCustomerUseCase.InputValues inputValues = AuthenticateCustomerUseCaseInputMapper
+        AuthenticateAUserUseCase.InputValues inputValues = AuthenticateAUserUseCaseInputMapper
                 .map(signInRequest);
 
         String token = "token";
 
-        AuthenticateCustomerUseCase.OutputValues output = new AuthenticateCustomerUseCase.OutputValues(token);
+        AuthenticateAUserUseCase.OutputValues output = new AuthenticateAUserUseCase.OutputValues(token);
 
         String payload = signInJson.write(signInRequest).getJson();
         // and
@@ -100,7 +100,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 .execute(eq(inputValues));
 
         // when
-        RequestBuilder request = asyncPostRequest(ApiPath.API_CUSTOMER + "/auth", payload);
+        RequestBuilder request = asyncPostRequest(ApiPath.API_USER + "/auth", payload);
 
         // mvcResult.getAsyncResult();
         // then
@@ -114,7 +114,7 @@ public class CustomerControllerTest extends BaseControllerTest {
         SignInRequest signInRequest = new SignInRequest("emai@email.com", "password");
 
         String payload = signInJson.write(signInRequest).getJson();
-        AuthenticateCustomerUseCase.InputValues inputValues = AuthenticateCustomerUseCaseInputMapper
+        AuthenticateAUserUseCase.InputValues inputValues = AuthenticateAUserUseCaseInputMapper
                 .map(signInRequest);
         // and
         doThrow(new UsernameNotFoundException("Error"))
@@ -122,7 +122,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 .execute(eq(inputValues));
 
         // when
-        RequestBuilder request = asyncPostRequest(ApiPath.API_CUSTOMER + "/auth", payload);
+        RequestBuilder request = asyncPostRequest(ApiPath.API_USER + "/auth", payload);
         // then.
         mockMvc.perform(request)
                 .andExpect(status().isOk()).andReturn();
@@ -135,7 +135,7 @@ public class CustomerControllerTest extends BaseControllerTest {
 
         String payload = signUpJson.write(signUpRequest).getJson();
 
-        CreateCustomerUseCase.InputValues inputValues = new CreateCustomerUseCase.InputValues(null, null, null,
+        CreateAUserUseCase.InputValues inputValues = new CreateAUserUseCase.InputValues(null, null, null,
                 null);
         // and
         doReturn(inputValues)
@@ -143,7 +143,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 .map(eq(signUpRequest));
 
         // when
-        RequestBuilder requestBuilder = asyncPostRequest(ApiPath.API_CUSTOMER, payload);
+        RequestBuilder requestBuilder = asyncPostRequest(ApiPath.API_USER, payload);
 
         // then
         mockMvc.perform(requestBuilder)
@@ -157,12 +157,12 @@ public class CustomerControllerTest extends BaseControllerTest {
 
         String payload = signUpJson.write(signUpRequest).getJson();
 
-        Customer customer = TestCoreEntityGenerator.randomCustomer();
+        User customer = TestCoreEntityGenerator.randomCustomer();
 
-        CreateCustomerUseCase.InputValues input = new CreateCustomerUseCase.InputValues(customer.getName(),
+        CreateAUserUseCase.InputValues input = new CreateAUserUseCase.InputValues(customer.getName(),
                 customer.getEmail(), customer.getAddress(), customer.getPassword());
 
-        CreateCustomerUseCase.OutputValues outputValues = new CreateCustomerUseCase.OutputValues(customer);
+        CreateAUserUseCase.OutputValues outputValues = new CreateAUserUseCase.OutputValues(customer);
 
         // and
         doReturn(input)
@@ -174,7 +174,7 @@ public class CustomerControllerTest extends BaseControllerTest {
                 .execute(eq(input));
 
         // when
-        RequestBuilder request = asyncPostRequest(ApiPath.API_CUSTOMER, payload);
+        RequestBuilder request = asyncPostRequest(ApiPath.API_USER, payload);
         // then
 
         mockMvc.perform(request)

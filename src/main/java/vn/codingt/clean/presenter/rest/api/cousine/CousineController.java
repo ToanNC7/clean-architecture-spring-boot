@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import vn.codingt.clean.core.usecases.UseCaseExecute;
 import vn.codingt.clean.core.usecases.cousine.GetAllCousinesUseCase;
-import vn.codingt.clean.core.usecases.cousine.SearchCousineByNameUseCase;
+import vn.codingt.clean.core.usecases.cousine.SearchCousinesByNameUseCase;
 import vn.codingt.clean.presenter.rest.api.entities.CousineResponse;
 
 @Component
@@ -15,11 +15,11 @@ public class CousineController implements CousineResource {
 
     private final UseCaseExecute useCaseExecute;
     private final GetAllCousinesUseCase getAllCousinesUseCase;
-    private final SearchCousineByNameUseCase searchCousineByNameUseCase;
+    private final SearchCousinesByNameUseCase searchCousineByNameUseCase;
 
     public CousineController(UseCaseExecute useCaseExecute,
             GetAllCousinesUseCase getAllCousinesUseCase,
-            SearchCousineByNameUseCase searchCousineByNameUseCase) {
+            SearchCousinesByNameUseCase searchCousineByNameUseCase) {
         this.useCaseExecute = useCaseExecute;
         this.getAllCousinesUseCase = getAllCousinesUseCase;
         this.searchCousineByNameUseCase = searchCousineByNameUseCase;
@@ -31,7 +31,7 @@ public class CousineController implements CousineResource {
         return useCaseExecute.execute(
                 getAllCousinesUseCase,
                 new GetAllCousinesUseCase.InputValues(),
-                (outputValues) -> CousineResponse.from(outputValues.getCousines()));
+                (outputValues) -> CousineResponse.from(outputValues.getCousins()));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CousineController implements CousineResource {
 
         return useCaseExecute.execute(
                 searchCousineByNameUseCase,
-                new SearchCousineByNameUseCase.InputValue(name),
+                new SearchCousinesByNameUseCase.InputValue(name),
                 (outputValue) -> CousineResponse.from(outputValue.getCousines()));
     }
 

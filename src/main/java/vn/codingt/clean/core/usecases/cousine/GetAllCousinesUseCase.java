@@ -27,7 +27,7 @@ public class GetAllCousinesUseCase
 
     @Value
     public static class OutputValue implements UseCase.OutputValue {
-        List<Cousine> cousines;
+        List<Cousine> cousins;
     }
 
 }

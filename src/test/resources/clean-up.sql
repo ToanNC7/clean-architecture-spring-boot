@@ -1,1 +1,1 @@
-DELETE FROM customer;
+DELETE FROM t_user;

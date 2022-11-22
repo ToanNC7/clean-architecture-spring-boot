@@ -2,15 +2,15 @@ package vn.codingt.clean.presenter.usecases.secutiry;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.presenter.rest.api.entities.ApiResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 
-public class CreateCustomerUseCaseOutputMapper {
+public class CreateAUserUseCaseOutputMapper {
 
-    public static ResponseEntity<ApiResponse> map(Customer customer, HttpServletRequest httpServletRequest) {
+    public static ResponseEntity<ApiResponse> map(User customer, HttpServletRequest httpServletRequest) {
 
         URI location = ServletUriComponentsBuilder
                 .fromContextPath(httpServletRequest)

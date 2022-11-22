@@ -1,15 +1,15 @@
-package vn.codingt.clean.core.usecases.customer;
+package vn.codingt.clean.core.usecases.user;
 
 import lombok.Value;
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.core.domain.exceptions.EmailAlreadyUsedException;
 import vn.codingt.clean.core.usecases.UseCase;
 
-public class CreateCustomerUseCase extends UseCase<CreateCustomerUseCase.InputValues, CreateCustomerUseCase.OutputValues> {
+public class CreateAUserUseCase extends UseCase<CreateAUserUseCase.InputValues, CreateAUserUseCase.OutputValues> {
 
-    private final CustomerRepository customerRepository;
+    private final UserRepository customerRepository;
 
-    public CreateCustomerUseCase(CustomerRepository customerRepository) {
+    public CreateAUserUseCase(UserRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -19,7 +19,7 @@ public class CreateCustomerUseCase extends UseCase<CreateCustomerUseCase.InputVa
             throw new EmailAlreadyUsedException("Email address already in use");
         }
 
-        Customer customer = Customer.newInstance(input.getName(), input.password, input.address, input.email);
+        User customer = User.newInstance(input.getName(), input.password, input.address, input.email);
         return new OutputValues(customerRepository.persist(customer));
     }
 
@@ -33,7 +33,7 @@ public class CreateCustomerUseCase extends UseCase<CreateCustomerUseCase.InputVa
 
     @Value
     public static class OutputValues implements UseCase.OutputValue {
-        Customer customer;
+        User customer;
     }
 
 }

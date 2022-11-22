@@ -8,11 +8,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.core.domain.exceptions.EmailAlreadyUsedException;
 import vn.codingt.clean.core.entities.TestCoreEntityGenerator;
-import vn.codingt.clean.core.usecases.customer.CreateCustomerUseCase;
-import vn.codingt.clean.core.usecases.customer.CustomerRepository;
+import vn.codingt.clean.core.usecases.user.CreateAUserUseCase;
+import vn.codingt.clean.core.usecases.user.UserRepository;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,19 +20,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CreateCustomerUseCaseTest {
+public class CreateAUserUseCaseTest {
 
     @InjectMocks
-    private CreateCustomerUseCase useCase;
+    private CreateAUserUseCase useCase;
 
     @Mock
-    private CustomerRepository repository;
+    private UserRepository repository;
 
     @Test
     public void executeThrowsExceptionWhenEmailIsAlreadyRegister() {
 
         // given
-        CreateCustomerUseCase.InputValues input = new CreateCustomerUseCase.InputValues("name", "email@com.vn",
+        CreateAUserUseCase.InputValues input = new CreateAUserUseCase.InputValues("name", "email@com.vn",
                 "address", "admin@123");
 
         // add
@@ -50,11 +50,11 @@ public class CreateCustomerUseCaseTest {
     public void executeReturnsCreatedCustomer() {
 
         // given
-        Customer customer = TestCoreEntityGenerator.randomCustomer();
-        Customer toBeMatched = Customer.newInstance(customer.getName(), customer.getPassword(), customer.getAddress(),
+        User customer = TestCoreEntityGenerator.randomCustomer();
+        User toBeMatched = User.newInstance(customer.getName(), customer.getPassword(), customer.getAddress(),
                 customer.getEmail());
 
-        CreateCustomerUseCase.InputValues input = new CreateCustomerUseCase.InputValues(customer.getName(),
+        CreateAUserUseCase.InputValues input = new CreateAUserUseCase.InputValues(customer.getName(),
                 customer.getEmail(), customer.getAddress(),
                 customer.getPassword());
 
@@ -64,7 +64,7 @@ public class CreateCustomerUseCaseTest {
                 .persist(eq(toBeMatched));
 
         // when
-        Customer actual = useCase.execute(input).getCustomer();
+        User actual = useCase.execute(input).getCustomer();
 
         assertThat(actual).isEqualTo(customer);
 

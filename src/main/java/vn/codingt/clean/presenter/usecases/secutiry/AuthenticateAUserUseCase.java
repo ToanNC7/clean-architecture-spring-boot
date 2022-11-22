@@ -9,13 +9,13 @@ import lombok.Value;
 import vn.codingt.clean.core.usecases.UseCase;
 
 @Service
-public class AuthenticateCustomerUseCase
-        extends UseCase<AuthenticateCustomerUseCase.InputValues, AuthenticateCustomerUseCase.OutputValues> {
+public class AuthenticateAUserUseCase
+        extends UseCase<AuthenticateAUserUseCase.InputValues, AuthenticateAUserUseCase.OutputValues> {
 
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
 
-    public AuthenticateCustomerUseCase(AuthenticationManager authenticationManager, JwtProvider jwtProvider) {
+    public AuthenticateAUserUseCase(AuthenticationManager authenticationManager, JwtProvider jwtProvider) {
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
     }

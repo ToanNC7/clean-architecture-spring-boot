@@ -5,25 +5,37 @@ import org.springframework.context.annotation.Configuration;
 
 import vn.codingt.clean.core.usecases.cousine.CousineRepository;
 import vn.codingt.clean.core.usecases.cousine.GetAllCousinesUseCase;
-import vn.codingt.clean.core.usecases.cousine.SearchCousineByNameUseCase;
-import vn.codingt.clean.core.usecases.customer.CreateCustomerUseCase;
-import vn.codingt.clean.core.usecases.customer.CustomerRepository;
+import vn.codingt.clean.core.usecases.cousine.SearchCousinesByNameUseCase;
+import vn.codingt.clean.core.usecases.post.GetAllPostUseCase;
+import vn.codingt.clean.core.usecases.post.PostRepository;
+import vn.codingt.clean.core.usecases.post.SearchByTitleUseCase;
+import vn.codingt.clean.core.usecases.user.CreateAUserUseCase;
+import vn.codingt.clean.core.usecases.user.UserRepository;
 
 @Configuration
 public class Module {
+    @Bean
+    public SearchByTitleUseCase searchByTitleUseCase(PostRepository repository){
+        return new SearchByTitleUseCase(repository);
+    }
+
+    @Bean
+    public GetAllPostUseCase getAllPostUseCase(PostRepository repository){
+        return  new GetAllPostUseCase(repository);
+    }
 
     @Bean
     public GetAllCousinesUseCase getAllCousinesUseCase(CousineRepository repository){
-        return  new GetAllCousinesUseCase(repository);
+        return new GetAllCousinesUseCase(repository);
     }
 
     @Bean
-    public SearchCousineByNameUseCase searchCousineByNameUseCase(CousineRepository repository){
-        return new SearchCousineByNameUseCase(repository);
+    public SearchCousinesByNameUseCase searchCousineByNameUseCase(CousineRepository repository){
+        return new SearchCousinesByNameUseCase(repository);
     }
 
     @Bean
-    public CreateCustomerUseCase createCustomerUseCase(CustomerRepository repository) {
-        return new CreateCustomerUseCase(repository);
+    public CreateAUserUseCase createAUserUseCase(UserRepository repository) {
+        return new CreateAUserUseCase(repository);
     }
 }

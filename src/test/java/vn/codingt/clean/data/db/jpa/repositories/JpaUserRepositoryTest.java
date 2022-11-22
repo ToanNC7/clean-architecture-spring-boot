@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import vn.codingt.clean.data.db.jpa.entities.CustomerData;
+import vn.codingt.clean.data.db.jpa.entities.UserData;
 
 import static vn.codingt.clean.TestUtils.newInstanceWithProperties;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,10 +18,10 @@ import vn.codingt.clean.core.entities.TestCoreEntityGenerator;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class JpaCustomerRepositoryTest {
+public class JpaUserRepositoryTest {
 
     @Autowired
-    private JpaCustomerRepository repository;
+    private JpaUserRepository repository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -36,7 +36,7 @@ public class JpaCustomerRepositoryTest {
     @Test
     public void existsByEmailReturnTrue() throws Exception {
         // given
-        CustomerData customerData = newInstanceWithProperties(CustomerData.class,
+        UserData customerData = newInstanceWithProperties(UserData.class,
                 TestCoreEntityGenerator.randomCustomer());
 
         // and
@@ -52,7 +52,7 @@ public class JpaCustomerRepositoryTest {
     @Test
     public void existsByEmailReturnFalse() throws Exception {
         // given
-        CustomerData customerData = newInstanceWithProperties(CustomerData.class,
+        UserData customerData = newInstanceWithProperties(UserData.class,
                 TestCoreEntityGenerator.randomCustomer());
         // and
         entityManager.persistAndFlush(customerData);

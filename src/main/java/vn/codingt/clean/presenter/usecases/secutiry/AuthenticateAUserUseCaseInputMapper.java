@@ -4,10 +4,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 import vn.codingt.clean.presenter.rest.api.entities.SignInRequest;
 
-public class AuthenticateCustomerUseCaseInputMapper {
-    public static AuthenticateCustomerUseCase.InputValues map(SignInRequest inRequest) {
+public class AuthenticateAUserUseCaseInputMapper {
+    public static AuthenticateAUserUseCase.InputValues map(SignInRequest inRequest) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 inRequest.getEmail(), inRequest.getPassword());
-        return new AuthenticateCustomerUseCase.InputValues(authenticationToken);
+        return new AuthenticateAUserUseCase.InputValues(authenticationToken);
     }
 }

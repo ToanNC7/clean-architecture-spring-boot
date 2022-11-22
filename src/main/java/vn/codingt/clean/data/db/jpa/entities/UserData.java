@@ -13,20 +13,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import vn.codingt.clean.core.domain.Customer;
+import vn.codingt.clean.core.domain.User;
 import vn.codingt.clean.core.domain.Identity;
 
 import static vn.codingt.clean.data.db.jpa.entities.IdConverter.converterId;
 
 @AllArgsConstructor
-@Entity(name = "customer")
+@Entity(name = "user")
 @EqualsAndHashCode(of = { "name", "email", "address", "password" })
 @Getter
 @NoArgsConstructor
 @Setter
-@Table(name = "customer")
+@Table(name = "t_user")
 @ToString(of = { "name", "email", "address" })
-public class CustomerData {
+public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,19 +44,19 @@ public class CustomerData {
     @Column(nullable = false)
     private String password;
 
-    public static CustomerData from(Customer customer) {
-        return new CustomerData(
-                converterId(customer.getId()),
-                customer.getName(),
-                customer.getEmail(),
-                customer.getAddress(),
-                customer.getPassword()
+    public static UserData from(User user) {
+        return new UserData(
+                converterId(user.getId()),
+                user.getName(),
+                user.getEmail(),
+                user.getAddress(),
+                user.getPassword()
 
         );
     }
 
-    public Customer fromThis() {
-        return new Customer(
+    public User fromThis() {
+        return new User(
                 new Identity(id),
                 name,
                 password,
