@@ -15,7 +15,6 @@ public class SearchByTitleUseCase extends UseCase<SearchByTitleUseCase.InputValu
         this.postRepository = postRepository;
     }
 
-
     @Override
     public OutputValue execute(InputValue input) {
         return new OutputValue(postRepository.searchByTitle(input.getTitle()));
@@ -23,10 +22,10 @@ public class SearchByTitleUseCase extends UseCase<SearchByTitleUseCase.InputValu
 
     @Value
     public static  class InputValue implements UseCase.InputValue{
-        final String title;
+         String title;
     }
     @Value
-    public  static class  OutputValue implements UseCase.OutputValue{
-        final List<Post> posts;
+    public static class  OutputValue implements UseCase.OutputValue{
+         List<Post> posts;
     }
 }

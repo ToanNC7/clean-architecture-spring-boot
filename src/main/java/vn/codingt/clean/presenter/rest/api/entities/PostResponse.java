@@ -39,7 +39,7 @@ public class PostResponse {
 
     public static List<PostResponse> from(List<Post> cousines) {
         return cousines
-                .stream()
+                .parallelStream()
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }

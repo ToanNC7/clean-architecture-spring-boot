@@ -27,8 +27,8 @@ import vn.codingt.clean.presenter.rest.api.entities.SignInRequest;
 import vn.codingt.clean.presenter.rest.api.entities.SignUpRequest;
 import vn.codingt.clean.presenter.usecases.UseCaseExecutorImpl;
 import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateAUserUseCase;
-import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateAUserUseCaseInputMapper;
-import vn.codingt.clean.presenter.usecases.secutiry.CreateAUserInputMapper;
+import vn.codingt.clean.presenter.rest.api.mapper.user.AuthenticateAUserUseCaseInputMapper;
+import vn.codingt.clean.presenter.rest.api.mapper.user.CreateAUserInputMapper;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;

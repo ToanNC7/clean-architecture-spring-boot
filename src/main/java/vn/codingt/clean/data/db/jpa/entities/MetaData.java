@@ -42,7 +42,6 @@ public class MetaData {
     @Column(nullable = false)
     private  String content;
 
-
     public static MetaData newInstance(String key, String content){
         return new MetaData(null, new PostData(), key, content);
     }

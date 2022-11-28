@@ -21,7 +21,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Table(name = "t_post")
 @Entity(name = "post")
@@ -30,7 +32,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@ToString
+@ToString(of = {"title","metaTitle","slug","summary","published","content"})
 public class PostData {
 
     @Id
@@ -44,8 +46,8 @@ public class PostData {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private String mateTitle;
+    @Column(name= "meta_title", nullable = false)
+    private String metaTitle;
 
     @Column(nullable = false)
     private String slug;
@@ -75,7 +77,8 @@ public class PostData {
                 summary,
                 true,
                 content,
-                new HashSet<>());
+                new HashSet<>()
+        );
     }
 
     public static PostData from(Post post){
@@ -92,12 +95,17 @@ public class PostData {
         );
     }
 
+    public static List<PostData> fromList(List<Post> postList){
+        return postList
+                .stream().map(f-> from(f)).collect(Collectors.toList());
+    }
+
     public Post fromThis(){
         return new Post(
                 new Identity(id),
                 user.fromThis(),
                 title,
-                mateTitle,
+                metaTitle,
                 slug,
                 summary,
                 published,

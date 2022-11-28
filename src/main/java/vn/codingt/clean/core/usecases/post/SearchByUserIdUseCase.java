@@ -20,12 +20,12 @@ public class SearchByUserIdUseCase extends UseCase<SearchByUserIdUseCase.InputVa
     }
 
     @Value
-    public static final class InputValue implements UseCase.InputValue{
-        final Long userId;
+    public static class InputValue implements UseCase.InputValue{
+        Long userId;
     }
 
     @Value
-    public static final class OutputValue implements UseCase.OutputValue{
-        final List<Post> posts;
+    public static class OutputValue implements UseCase.OutputValue{
+        List<Post> posts;
     }
 }

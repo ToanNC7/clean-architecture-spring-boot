@@ -7,7 +7,6 @@ import vn.codingt.clean.core.domain.exceptions.NotFoundException;
 import vn.codingt.clean.core.usecases.UseCase;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GetMetaByPostIdUseCase extends UseCase<GetMetaByPostIdUseCase.InputValue, GetMetaByPostIdUseCase.OutputValue> {
 
@@ -27,14 +26,14 @@ public class GetMetaByPostIdUseCase extends UseCase<GetMetaByPostIdUseCase.Input
     }
 
     @Value
-    public static final class InputValue implements UseCase.InputValue {
-        final Identity postId;
+    public static class InputValue implements UseCase.InputValue {
+        Identity postId;
 
     }
 
     @Value
-    public static final class OutputValue implements UseCase.OutputValue {
-        final List<Meta> metas;
+    public static class OutputValue implements UseCase.OutputValue {
+        List<Meta> metas;
     }
 
 }

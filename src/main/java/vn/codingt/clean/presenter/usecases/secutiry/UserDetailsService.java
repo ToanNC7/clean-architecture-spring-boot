@@ -1,7 +1,6 @@
 package vn.codingt.clean.presenter.usecases.secutiry;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,11 +9,11 @@ import vn.codingt.clean.core.usecases.user.UserRepository;
 import vn.codingt.clean.data.db.jpa.entities.UserData;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public CustomUserDetailsService(UserRepository repository) {
+    public UserDetailsService(UserRepository repository) {
         this.userRepository = repository;
     }
 
@@ -23,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserData customerData = userRepository
                 .findByEmail(email)
-                .orElseThrow(()-> new UsernameNotFoundException(String.format("User %s not fount", email)));
+                .orElseThrow(()-> new UsernameNotFoundException(String.format("User %s not found", email)));
         return UserPrincipal.from(customerData);
     }
 

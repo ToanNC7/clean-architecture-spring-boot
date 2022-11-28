@@ -1,5 +1,5 @@
-CREATE TABLE t_user (
-    id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS t_user (
+    id bigserial NOT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     address VARCHAR(200) NOT NULL,

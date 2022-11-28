@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import vn.codingt.clean.core.usecases.user.CreateAUserUseCase;
 import vn.codingt.clean.presenter.rest.api.entities.SignUpRequest;
-import vn.codingt.clean.presenter.usecases.secutiry.CreateAUserInputMapper;
+import vn.codingt.clean.presenter.rest.api.mapper.user.CreateAUserInputMapper;
 
 import static org.mockito.Mockito.doReturn;
 import static org.assertj.core.api.Assertions.assertThat;

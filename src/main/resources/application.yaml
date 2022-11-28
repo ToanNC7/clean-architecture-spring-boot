@@ -4,14 +4,29 @@ server:
 spring:
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: none
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        enable_lazy_load_no_trans: true
+        generate_statistics: true
+        jdbc:
+          batch_size: 1000
+          time-zone: UTC
+        order_inserts: true
+        order_updates: true
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/blog?reWriteBatchedInserts=true
+    username: postgres
+    password: Admin@123
+    hikari:
+      connectionTimeout: 300_000 #5 minutes
+      maximumPoolSize: 10
   mvc:
+    async:
+      request-timeout: -1
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-  datasource:
-    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;MODE=MYSQL
 
 logging:
   level:

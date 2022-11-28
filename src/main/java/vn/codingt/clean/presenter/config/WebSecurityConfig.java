@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import vn.codingt.clean.core.util.constant.ApiPath;
-import vn.codingt.clean.presenter.usecases.secutiry.CustomUserDetailsService;
+import vn.codingt.clean.presenter.usecases.secutiry.UserDetailsService;
 import vn.codingt.clean.presenter.usecases.secutiry.JwtAuthenticationEntryPoint;
 import vn.codingt.clean.presenter.usecases.secutiry.JwtAuthenticationFilter;
 import vn.codingt.clean.presenter.usecases.secutiry.JwtProvider;
@@ -30,7 +30,7 @@ import vn.codingt.clean.presenter.usecases.secutiry.JwtProvider;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private UserDetailsService customUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -78,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers(ApiPath.API_USER + "/**").permitAll()
                 .antMatchers(ApiPath.API_URL_ROOT + "/**").authenticated()
+                .antMatchers(ApiPath.API_POST+"/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().permitAll();
 

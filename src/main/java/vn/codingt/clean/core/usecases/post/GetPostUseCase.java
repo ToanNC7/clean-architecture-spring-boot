@@ -23,12 +23,12 @@ public class GetPostUseCase extends UseCase<GetPostUseCase.InputValue, GetPostUs
     }
 
     @Value
-    public static final class InputValue implements UseCase.InputValue{
-        final Identity id;
+    public static class InputValue implements UseCase.InputValue{
+         Identity id;
     }
 
     @Value
-    public static final class OutputValue implements UseCase.OutputValue{
-        final Post post;
+    public static class OutputValue implements UseCase.OutputValue{
+         Post post;
     }
 }

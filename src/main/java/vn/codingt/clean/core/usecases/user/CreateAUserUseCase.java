@@ -33,7 +33,7 @@ public class CreateAUserUseCase extends UseCase<CreateAUserUseCase.InputValues, 
 
     @Value
     public static class OutputValues implements UseCase.OutputValue {
-        User customer;
+        User user;
     }
 
 }

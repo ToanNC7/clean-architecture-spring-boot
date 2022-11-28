@@ -1,9 +1,7 @@
 package vn.codingt.clean.core.usecases.post;
 
 import lombok.Value;
-import vn.codingt.clean.core.domain.Identity;
 import vn.codingt.clean.core.domain.Post;
-import vn.codingt.clean.core.domain.exceptions.NotFoundException;
 import vn.codingt.clean.core.usecases.UseCase;
 
 import java.util.List;
@@ -11,8 +9,8 @@ import java.util.List;
 public class GetAllPostUseCase extends UseCase<GetAllPostUseCase.InputValue, GetAllPostUseCase.OutputValue> {
     private final PostRepository postRepository;
 
-    public GetAllPostUseCase(PostRepository postRepositor){
-        this.postRepository = postRepositor;
+    public GetAllPostUseCase(PostRepository postRepository){
+        this.postRepository = postRepository;
     }
 
     @Override
@@ -26,6 +24,6 @@ public class GetAllPostUseCase extends UseCase<GetAllPostUseCase.InputValue, Get
 
     @Value
     public static class OutputValue implements  UseCase.OutputValue{
-        final List<Post> posts;
+        List<Post> posts;
     }
 }

@@ -1,4 +1,4 @@
-package vn.codingt.clean.presenter.usecases.secutiry;
+package vn.codingt.clean.presenter.rest.api.mapper.user;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

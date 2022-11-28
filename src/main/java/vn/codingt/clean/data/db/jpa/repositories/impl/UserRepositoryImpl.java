@@ -7,6 +7,7 @@ import vn.codingt.clean.data.db.jpa.entities.UserData;
 import vn.codingt.clean.data.db.jpa.repositories.JpaUserRepository;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -28,6 +29,16 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean existsByEmail(String email) {
         return jpaUserRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return jpaUserRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByIds(Set<Long> ids) {
+        return jpaUserRepository.existsByIdIn(ids);
     }
 
     @Override

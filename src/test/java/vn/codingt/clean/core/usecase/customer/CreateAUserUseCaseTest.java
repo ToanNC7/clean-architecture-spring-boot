@@ -64,7 +64,7 @@ public class CreateAUserUseCaseTest {
                 .persist(eq(toBeMatched));
 
         // when
-        User actual = useCase.execute(input).getCustomer();
+        User actual = useCase.execute(input).getUser();
 
         assertThat(actual).isEqualTo(customer);
 

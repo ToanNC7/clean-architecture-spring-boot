@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public interface PostRepository {
 
+    Post persist(Post post);
+
+    List<Post> persistBulk(List<Post> post);
+
     List<Post> getAll();
 
     List<Post> searchByTitle(String title);
