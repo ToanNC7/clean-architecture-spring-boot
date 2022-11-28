@@ -1,0 +1,14 @@
+package vn.codingt.clean.presenter.rest.api.mapper.user;
+
+import vn.codingt.clean.presenter.rest.api.entities.SignInRequest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+import vn.codingt.clean.presenter.usecases.secutiry.AuthenticateAUserUseCase;
+
+public class AuthenticateAUserUseCaseInputMapper {
+    public static AuthenticateAUserUseCase.InputValues map(SignInRequest inRequest) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                inRequest.getEmail(), inRequest.getPassword());
+        return new AuthenticateAUserUseCase.InputValues(authenticationToken);
+    }
+}
