@@ -9,6 +9,7 @@ import cz.jirutka.rsql.parser.ast.Node;
 import cz.jirutka.rsql.parser.ast.RSQLOperators;
 import org.springframework.data.jpa.domain.Specification;
 import vn.codingt.clean.rsql.exception.RSQLSyntaxException;
+import vn.codingt.clean.rsql.operator.RSqlOperators;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,12 +20,20 @@ public class JpaRSqlSpecBuilder<T> {
 
 
     public static <T>Specification<T> build(String query, String sort) throws RSQLSyntaxException{
-        if(query == null && query.isEmpty()){
+        if(query == null || query.isEmpty()){
             return Specification.where(null);
         }
 
         Set<ComparisonOperator> operators = RSQLOperators.defaultOperators();
-
+        operators.add(RSqlOperators.CONTAINS_IGNORE_CASE);
+        operators.add(RSqlOperators.CONTAINS);
+        operators.add(RSqlOperators.EQUAL_IGNORE_CASE);
+       operators.add(RSqlOperators.NOT_CONTAINS);
+        operators.add(RSqlOperators.ENDS_WITH);
+        operators.add(RSqlOperators.STARTS_WITH_IGNORE_CASE);
+        operators.add(RSqlOperators.STARTS_WITH);
+        operators.add(RSqlOperators.NOT_CONTAINS_IGNORE_CASE);
+        operators.add(RSqlOperators.ENDS_WITH_IGNORE_CASE);
 
         RSQLParser rsqlParser = new RSQLParser(operators);
 

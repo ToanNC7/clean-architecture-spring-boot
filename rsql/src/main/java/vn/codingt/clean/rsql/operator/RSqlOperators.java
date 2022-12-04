@@ -2,15 +2,15 @@ package vn.codingt.clean.rsql.operator;
 
 import cz.jirutka.rsql.parser.ast.ComparisonOperator;
 
-public class RSqlOperators {
+public abstract class RSqlOperators {
 
-    public static final ComparisonOperator EQUAL_IGNORE_CASE = new ComparisonOperator("=eqIgCase=", "=eic=");
-    public static final ComparisonOperator CONTAINS_IGNORE_CASE= new ComparisonOperator("=containsIgCase=", "=cic=");
-    public static final ComparisonOperator NOT_CONTAINS_IGNORE_CASE = new ComparisonOperator("=notContainsIgCase=", "=ncic=");
-    public static final ComparisonOperator CONTAINS= new ComparisonOperator("=contains=", "=like=");
-    public static final ComparisonOperator NOT_CONTAINS= new ComparisonOperator("=notContains=", "=nlike=", "nc");
-    public static final ComparisonOperator STARTS_WITH= new ComparisonOperator("=startsWith=", "=swic=");
-    public static final ComparisonOperator STARTS_WITH_IGNORE_CASE= new ComparisonOperator("=startWithIgCase=", "=swic=");
-    public static final ComparisonOperator ENDS_WITH= new ComparisonOperator("=endsWith=", "=ew=");
-    public static final ComparisonOperator ENDS_WITH_IGNORE_CASE= new ComparisonOperator("=endsWithIgCase=", "=ewic=");
+    public static final ComparisonOperator EQUAL_IGNORE_CASE = new ComparisonOperator(new String[]{"=eqIgCase=", "=eic="});
+    public static final ComparisonOperator CONTAINS_IGNORE_CASE= new ComparisonOperator(new String[]{"=containsIgCase=", "=cic="});
+    public static final ComparisonOperator NOT_CONTAINS_IGNORE_CASE = new ComparisonOperator(new String[] {"=notContainsIgCase=", "=ncic="});
+    public static final ComparisonOperator CONTAINS= new ComparisonOperator(new String[]{"=contains=", "=like="});
+    public static final ComparisonOperator NOT_CONTAINS= new ComparisonOperator(new String[]{"=notContains=", "=nlike="});
+    public static final ComparisonOperator STARTS_WITH= new ComparisonOperator(new String[]{"=startsWith=", "=swic="});
+    public static final ComparisonOperator STARTS_WITH_IGNORE_CASE= new ComparisonOperator(new String[]{"=startWithIgCase=", "=swic="});
+    public static final ComparisonOperator ENDS_WITH= new ComparisonOperator(new String[]{"=endsWith=", "=ew="});
+    public static final ComparisonOperator ENDS_WITH_IGNORE_CASE= new ComparisonOperator(new String[]{"=endsWithIgCase=", "=ewic="});
 }

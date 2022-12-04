@@ -12,6 +12,7 @@ import vn.codingt.clean.core.usecases.post.GetAllPostUseCase;
 import vn.codingt.clean.core.usecases.post.PostRepository;
 import vn.codingt.clean.core.usecases.user.CreateAUserUseCase;
 import vn.codingt.clean.core.usecases.user.UserRepository;
+import vn.codingt.clean.data.db.jpa.repositories.JpaPostRepository;
 
 @Configuration
 public class Module {
@@ -30,7 +31,7 @@ public class Module {
         return new SearchByTitleUseCase(repository);
     }
     @Bean
-    public GetAllPostUseCase getAllPostUseCase(PostRepository repository){
+    public GetAllPostUseCase getAllPostUseCase(JpaPostRepository repository){
         return  new GetAllPostUseCase(repository);
     }
 

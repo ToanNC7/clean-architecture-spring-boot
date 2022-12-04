@@ -56,13 +56,13 @@ public class JpaRSqlSpecification<T> implements RSpecification<T> {
         }
         SqlPath lhs = new PathParser().parseSelector(root, selector);
 
-        List<Object> rhs = casrArgument(lhs, arguments);
+        List<Object> rhs = caseArgument(lhs, arguments);
 
         Object firstArg = rhs.get(0);
         return rSqlOperator.buildPredicate(root, criteriaBuilder, lhs, rhs, firstArg);
     }
 
-    private List<Object> casrArgument(SqlPath lhs, List<String> arguments) {
+    private List<Object> caseArgument(SqlPath lhs, List<String> arguments) {
         Class<?> type = lhs.getJavaType();
         List<Object>  list = new ArrayList<>();
         for(String arg: arguments){

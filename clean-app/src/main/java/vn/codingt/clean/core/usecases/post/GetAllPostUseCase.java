@@ -1,29 +1,36 @@
 package vn.codingt.clean.core.usecases.post;
 
-import vn.codingt.clean.core.domain.Post;
 import lombok.Value;
 import vn.codingt.clean.core.usecases.UseCase;
-
-import java.util.List;
+import vn.codingt.clean.data.db.jpa.entities.PostData;
+import vn.codingt.clean.data.db.jpa.repositories.JpaPostRepository;
+import vn.codingt.clean.rsql.JpaRSqlProcessor;
+import vn.codingt.clean.rsql.dto.DataPage;
 
 public class GetAllPostUseCase extends UseCase<GetAllPostUseCase.InputValue, GetAllPostUseCase.OutputValue> {
-    private final PostRepository postRepository;
+    private final JpaPostRepository postRepository;
 
-    public GetAllPostUseCase(PostRepository postRepository){
+    public GetAllPostUseCase(JpaPostRepository postRepository){
         this.postRepository = postRepository;
     }
 
     @Override
     public OutputValue execute(InputValue input) {
-        return new OutputValue(postRepository.getAll());
+        DataPage<PostData> postDataDataPage = JpaRSqlProcessor.execQuery(postRepository, input.fields, input.filter, input.size, input.page, input.sort);
+        return new OutputValue(postDataDataPage);
     }
 
     @Value
     public static class InputValue implements UseCase.InputValue{
+        String filter;
+        String fields;
+        int size;
+        int page;
+        String sort;
     }
 
     @Value
     public static class OutputValue implements  UseCase.OutputValue{
-        List<Post> posts;
+        DataPage<PostData> post;
     }
 }
